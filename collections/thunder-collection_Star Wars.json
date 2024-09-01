@@ -1,0 +1,98 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "Star Wars",
+    "collectionId": "6fa77245-46c4-47bf-87b3-af86e9dedfdc",
+    "dateExported": "2024-09-01T18:13:49.505Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "90081477-34d3-43b0-b36f-faa78fbdeb1a",
+            "colId": "6fa77245-46c4-47bf-87b3-af86e9dedfdc",
+            "containerId": "",
+            "name": "getPeople",
+            "url": "http://localhost:8080/swapi/v1/people/?sortByCreated=ASC",
+            "method": "GET",
+            "sortNum": 25000,
+            "created": "2024-08-30T16:53:13.883Z",
+            "modified": "2024-09-01T16:12:31.850Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "15",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "offset",
+                    "value": "0",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "byName",
+                    "value": "sky",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "sortByName",
+                    "value": "DESC",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "sortByCreated",
+                    "value": "ASC",
+                    "isPath": false
+                }
+            ]
+        },
+        {
+            "_id": "3a131f95-5879-43b6-b7c6-c67b23ebfc56",
+            "colId": "6fa77245-46c4-47bf-87b3-af86e9dedfdc",
+            "containerId": "",
+            "name": "getPlanets",
+            "url": "http://localhost:8080/swapi/v1/planets",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-08-30T18:25:23.235Z",
+            "modified": "2024-09-01T18:13:30.212Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "limit",
+                    "value": "15",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "offset",
+                    "value": "0",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "byName",
+                    "value": "too",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "sortByName",
+                    "value": "ASC",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "sortByCreated",
+                    "value": "DESC",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ]
+        }
+    ],
+    "ref": "HASBgQKWUfGxQZtJMHpfa_mrt7v2fwX7oF4UFevIkrfvHTBZeiL6OXchK1J_p8LpmXVw9ZCfMgEp0be-KsfMRQ"
+}

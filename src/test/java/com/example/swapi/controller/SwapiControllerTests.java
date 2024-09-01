@@ -38,6 +38,4 @@ class SwapiControllerTests {
                 .thenReturn(new ResponseBuilder(null, HttpStatus.OK));
         mockMvc.perform(get("/swapi/v1/planets/").content("null")).andExpect(status().isOk());
     }
-
-
 }
