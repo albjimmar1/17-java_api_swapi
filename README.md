@@ -10,6 +10,7 @@ JUnit<br>
 Mockito<br>
 JaCoCo<br>
 Maven<br>
+Docker<br>
 
 # Installation
 
@@ -21,6 +22,12 @@ cd 17-java_api_swapi
 ```
 ```sh
 mvn clean install
+```
+
+# Application execution
+$PATH = localhost:8080
+```sh
+mvnw spring-boot:run
 ```
 
 # Test execution
@@ -39,6 +46,22 @@ target/site/jacoco/index.html
 
 ```sh
 cd collections
+```
+
+# Docker: port 6969
+
+Building an Image
+```sh
+docker-compose build swapi_app
+```
+Deploying a Container: $PATH = localhost:6969
+```sh
+docker-compose up
+```
+
+Stop a Container
+```sh
+docker-compose down
 ```
 
 # Documentation
