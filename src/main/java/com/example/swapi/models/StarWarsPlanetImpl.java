@@ -1,6 +1,5 @@
 package com.example.swapi.models;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -18,14 +17,15 @@ public class StarWarsPlanetImpl implements StarWarsPlanet {
     private String population;
     private List<String> residents;
     private List<String> films;
-    private LocalDateTime created;
-    private LocalDateTime edited;
+    private String created;
+    private String edited;
     private String url;
+    private LocalDateTime createdLDT;
 
     public StarWarsPlanetImpl() {
     }
 
-    public StarWarsPlanetImpl(String name, String rotation_period, String orbital_period, String diameter, String climate, String gravity, String terrain, String surface_water, String population, List<String> residents, List<String> films, LocalDateTime created, LocalDateTime edited, String url) {
+    public StarWarsPlanetImpl(String name, String rotation_period, String orbital_period, String diameter, String climate, String gravity, String terrain, String surface_water, String population, List<String> residents, List<String> films, String created, String edited, String url) {
         this.name = name;
         this.rotation_period = rotation_period;
         this.orbital_period = orbital_period;
@@ -40,6 +40,7 @@ public class StarWarsPlanetImpl implements StarWarsPlanet {
         this.created = created;
         this.edited = edited;
         this.url = url;
+        this.createdLDT = null;
     }
 
     public String getName() {
@@ -86,16 +87,24 @@ public class StarWarsPlanetImpl implements StarWarsPlanet {
         return films;
     }
 
-    public LocalDateTime getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public LocalDateTime getEdited() {
+    public void setCreated(String created) { this.created = created; }
+
+    public String getEdited() {
         return edited;
     }
 
     public String getUrl() {
         return url;
+    }
+
+    public LocalDateTime getCreatedLDT() { return createdLDT; }
+
+    public void setCreatedLDT(LocalDateTime createdLDT) {
+        this.createdLDT = createdLDT;
     }
 
     @Override

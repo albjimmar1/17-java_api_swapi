@@ -1,7 +1,5 @@
 package com.example.swapi.models;
 
-import org.springframework.cglib.core.Local;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -21,14 +19,15 @@ public class StarWarsCharacterImpl implements StarWarsCharacter {
     private List<String> species;
     private List<String> vehicles;
     private List<String> starships;
-    private LocalDateTime created;
-    private LocalDateTime edited;
+    private String created;
+    private String edited;
     private String url;
+    private LocalDateTime createdLDT;
 
     public StarWarsCharacterImpl() {
     }
 
-    public StarWarsCharacterImpl(String name, String height, String mass, String hair_color, String skin_color, String eye_color, String birth_year, String gender, String homeworld, List<String> films, List<String> species, List<String> vehicles, List<String> starships, LocalDateTime created, LocalDateTime edited, String url) {
+    public StarWarsCharacterImpl(String name, String height, String mass, String hair_color, String skin_color, String eye_color, String birth_year, String gender, String homeworld, List<String> films, List<String> species, List<String> vehicles, List<String> starships, String created, String edited, String url) {
         this.name = name;
         this.height = height;
         this.mass = mass;
@@ -45,6 +44,7 @@ public class StarWarsCharacterImpl implements StarWarsCharacter {
         this.created = created;
         this.edited = edited;
         this.url = url;
+        this.createdLDT = null;
     }
 
     public String getName() {
@@ -99,14 +99,22 @@ public class StarWarsCharacterImpl implements StarWarsCharacter {
         return starships;
     }
 
-    public LocalDateTime getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public LocalDateTime getEdited() { return edited; }
+    public void setCreated(String created) { this.created = created; }
+
+    public String getEdited() { return edited; }
 
     public String getUrl() {
         return url;
+    }
+
+    public LocalDateTime getCreatedLDT() { return createdLDT; }
+
+    public void setCreatedLDT(LocalDateTime createdLDT) {
+        this.createdLDT = createdLDT;
     }
 
     @Override

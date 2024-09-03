@@ -15,7 +15,8 @@ public interface StarWarsPlanet {
     String getPopulation();
     List<String> getResidents();
     List<String> getFilms();
-    LocalDateTime getCreated();
-    LocalDateTime getEdited();
+    String getCreated();
+    String getEdited();
     String getUrl();
+    LocalDateTime getCreatedLDT();
 }

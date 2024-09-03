@@ -4,6 +4,6 @@ services:
     image: alb-swapi-app:1.0.0
     build: .
     ports:
-      - 6969:8080
+      - 6968:8080
     #environment:
     #depends_on:

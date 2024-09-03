@@ -17,7 +17,8 @@ public interface StarWarsCharacter {
     List<String> getSpecies();
     List<String> getVehicles();
     List<String> getStarships();
-    LocalDateTime getCreated();
-    LocalDateTime getEdited();
+    String getCreated();
+    String getEdited();
     String getUrl();
+    LocalDateTime getCreatedLDT();
 }

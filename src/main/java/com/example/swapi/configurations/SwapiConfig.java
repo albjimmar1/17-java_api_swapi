@@ -1,13 +1,16 @@
 package com.example.swapi.configurations;
 
-import com.example.swapi.services.SwapiService;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class SwapiConfig {
+@EnableWebMvc
+public class SwapiConfig implements WebMvcConfigurer {
 
     @Bean
     public RestTemplate restTemplate() {
@@ -15,9 +18,11 @@ public class SwapiConfig {
         return builder.build();
     }
 
-    /*@Bean
-    public SwapiService swapiService() {
-        return new SwapiService();
-    }*/
-
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("*");
+        WebMvcConfigurer.super.addCorsMappings(registry);
+    }
 }

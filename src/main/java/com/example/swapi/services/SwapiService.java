@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,6 +28,8 @@ public class SwapiService {
     private static final List<String> ORDERS = Arrays.asList("ASC", "DESC");
     private static final String ASC = "ASC";
     private static final String DESC = "DESC";
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_DATE_TIME;
+    private static final DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public ResponseBuilder findPeople(String url, String byName, Integer limit, Integer offset, String sortByName, String sortByCreated) {
         boolean badLimit = limit != null && limit < 0;
@@ -60,19 +64,22 @@ public class SwapiService {
             responseStatus = (HttpStatus) e.getStatusCode();
             log.error(GETPEOPLE_ERROR_MESSAGE + e.getMessage());
         }
+        results.forEach(e -> {
+            e.setCreatedLDT(LocalDateTime.parse(e.getCreated(), FORMATTER));
+        });
+        if (ASC.equals(sortByName)) {
+            results = results.stream().sorted(Comparator.comparing(StarWarsCharacter::getName).reversed()).collect(Collectors.toList());
+        } else if (DESC.equals(sortByName)) {
+            results = results.stream().sorted(Comparator.comparing(StarWarsCharacter::getName)).collect(Collectors.toList());
+        } else if (ASC.equals(sortByCreated)) {
+            results = results.stream().sorted(Comparator.comparing(StarWarsCharacter::getCreatedLDT)).collect(Collectors.toList());
+        } else if (DESC.equals(sortByCreated)) {
+            results = results.stream().sorted(Comparator.comparing(StarWarsCharacter::getCreatedLDT).reversed()).collect(Collectors.toList());
+        }
         List<StarWarsCharacterImpl> finalResults = results.stream()
                 .skip(offset == null ? 0 : offset)
                 .limit(limit == null ? results.size() : limit)
                 .collect(Collectors.toList());
-        if (ASC.equals(sortByName)) {
-            finalResults = finalResults.stream().sorted(Comparator.comparing(StarWarsCharacter::getName).reversed()).collect(Collectors.toList());
-        } else if (DESC.equals(sortByName)) {
-            finalResults = finalResults.stream().sorted(Comparator.comparing(StarWarsCharacter::getName)).collect(Collectors.toList());
-        } else if (ASC.equals(sortByCreated)) {
-            finalResults = finalResults.stream().sorted(Comparator.comparing(StarWarsCharacter::getCreated)).collect(Collectors.toList());
-        } else if (DESC.equals(sortByCreated)) {
-            finalResults = finalResults.stream().sorted(Comparator.comparing(StarWarsCharacter::getCreated).reversed()).collect(Collectors.toList());
-        }
         return new ResponseBuilder(finalResults, responseStatus);
     }
 
@@ -109,19 +116,22 @@ public class SwapiService {
             responseStatus = (HttpStatus) e.getStatusCode();
             log.error(GETPLANETS_ERROR_MESSAGE + e.getMessage());
         }
+        results.forEach(e -> {
+            e.setCreatedLDT(LocalDateTime.parse(e.getCreated(), FORMATTER));
+        });
+        if (ASC.equals(sortByName)) {
+            results = results.stream().sorted(Comparator.comparing(StarWarsPlanet::getName).reversed()).collect(Collectors.toList());
+        } else if (DESC.equals(sortByName)) {
+            results = results.stream().sorted(Comparator.comparing(StarWarsPlanet::getName)).collect(Collectors.toList());
+        } else if (ASC.equals(sortByCreated)) {
+            results = results.stream().sorted(Comparator.comparing(StarWarsPlanet::getCreated)).collect(Collectors.toList());
+        } else if (DESC.equals(sortByCreated)) {
+            results = results.stream().sorted(Comparator.comparing(StarWarsPlanet::getCreated).reversed()).collect(Collectors.toList());
+        }
         List<StarWarsPlanetImpl> finalResults = results.stream()
                 .skip(offset == null ? 0 : offset)
                 .limit(limit == null ? results.size() : limit)
                 .collect(Collectors.toList());
-        if (ASC.equals(sortByName)) {
-            finalResults = finalResults.stream().sorted(Comparator.comparing(StarWarsPlanet::getName).reversed()).collect(Collectors.toList());
-        } else if (DESC.equals(sortByName)) {
-            finalResults = finalResults.stream().sorted(Comparator.comparing(StarWarsPlanet::getName)).collect(Collectors.toList());
-        } else if (ASC.equals(sortByCreated)) {
-            finalResults = finalResults.stream().sorted(Comparator.comparing(StarWarsPlanet::getCreated)).collect(Collectors.toList());
-        } else if (DESC.equals(sortByCreated)) {
-            finalResults = finalResults.stream().sorted(Comparator.comparing(StarWarsPlanet::getCreated).reversed()).collect(Collectors.toList());
-        }
         return new ResponseBuilder(finalResults, responseStatus);
     }
 

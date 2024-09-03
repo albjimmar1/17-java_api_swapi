@@ -54,7 +54,7 @@ Building an Image
 ```sh
 docker-compose build swapi_app
 ```
-Deploying a Container: $PATH = localhost:6969
+Deploying a Container: $PATH = localhost:6968
 ```sh
 docker-compose up
 ```
